@@ -1,0 +1,28 @@
+(common) {
+	header /* {
+		#-Server
+		Server "Pumpkin 2.00.7 (Atari 2600)"
+	}
+}
+
+(proxyheaders) {
+	trusted_proxies 0.0.0.0/0
+}
+
+{
+	auto_https off
+	admin off
+	log {
+		level WARN
+	}
+}
+
+:80 {
+	root * /app/web/
+	php_fastcgi 127.0.0.1:9000 {
+		trusted_proxies 0.0.0.0/0
+	}
+	file_server browse
+	encode zstd gzip
+	import common
+}
