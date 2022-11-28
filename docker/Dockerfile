@@ -1,5 +1,5 @@
 # docker build --pull --tag docker-ui --build-arg BUILDKIT_INLINE_CACHE=1 --file ./docker/Dockerfile ./ && docker run -it --rm docker-ui
-FROM node:4-alpine as node
+FROM node:19-alpine as node
 
 WORKDIR /tmp/
 ENV NODE_ENV=production
