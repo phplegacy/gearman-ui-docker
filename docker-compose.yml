@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  php:
+    container_name: 'php'
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: ./
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    tty: true
+    ports:
+      - '8081:80'
+    restart: unless-stopped
+    environment:
+      - 'TZ=UTC'
+      - 'GEARMAN_SERVERS=Gearman#1:gearman:4730,Gearman#2:gearman2:4730'
+      - 'COMPOSE_CONVERT_WINDOWS_PATHS=1'
+    networks:
+      - network1
+
+  gearman:
+    container_name: 'gearman'
+    image: 'beeyev/gearman:latest'
+    restart: unless-stopped
+    environment:
+      - 'TZ=UTC'
+      - 'VERBOSE=INFO'
+    networks:
+      - network1
+
+networks:
+  network1:
+    driver: bridge
