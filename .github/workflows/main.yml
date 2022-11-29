@@ -26,7 +26,7 @@ jobs:
         name: Prepare env variables
         run: |
           echo "BUILD_DATE=$(TZ=':UTC' date +'%Y-%m-%d %H:%M:%S (%Z)')" >> ${GITHUB_ENV}
-          echo "BUILD_VER=${GITHUB_SHA::7}" >> ${GITHUB_ENV}
+          echo "BUILD_FINGERPRINT=${GITHUB_SHA::7}" >> ${GITHUB_ENV}
 
       -
         name: Check out code
@@ -62,10 +62,10 @@ jobs:
           file: ./docker/Dockerfile
           build-args: |
             BUILD_DATE=${{ env.BUILD_DATE }}
-            BUILD_VER=${{ env.BUILD_VER }}
+            BUILD_FINGERPRINT=${{ env.BUILD_FINGERPRINT }}
           tags: |
             legacyphp/gearman-ui:latest
-            ghcr.io/phplegacy/gearman-ui:latest
+            ghcr.io/phplegacy/gearman-ui-docker:latest
           pull: true
           push: true
 
