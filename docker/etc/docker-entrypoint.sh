@@ -24,6 +24,7 @@ if [ "$1" = 'supervisor' ]; then
     EXEC="/usr/bin/supervisord -c /etc/supervisord.conf"
 
     printf "\n${GRN}---> 🚀️️ Starting Gearman UI container...${NC}"
+    printf "\nBuild date: ${BUILD_DATE}, Build version: ${BUILD_VER}\n"
     printf "\n---> Exec command: ${EXEC}\n"
 
     exec ${EXEC}

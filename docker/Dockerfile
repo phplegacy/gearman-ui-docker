@@ -83,6 +83,11 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 ARG TZ='UTC'
 ENV TZ=$TZ
+#These params meant to be set by CI
+ARG BUILD_DATE
+ENV BUILD_DATE=$BUILD_DATE
+ARG BUILD_VER
+ENV BUILD_VER=$BUILD_VER
 
 COPY --from=node /tmp/gearman-ui-master/ /app/
 COPY ./docker/config/gearmanui/config.yml /app/config.yml
