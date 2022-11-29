@@ -10,6 +10,10 @@ down:
 stop:
 	docker-compose stop
 
+update:
+	docker-compose pull
+	make up
+
 restart: down up
 	$(info Restart completed)
 
@@ -19,5 +23,8 @@ state:
 logs: ## Show docker logs
 	docker-compose logs -f --tail=100 $(ARGS)
 
-php:
-	docker-compose exec php sh
+gearman-ui:
+	docker-compose exec gearman-ui sh
+
+gearman:
+	docker-compose exec gearman sh

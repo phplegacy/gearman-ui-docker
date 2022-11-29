@@ -1,13 +1,9 @@
-version: "3.9"
+version: "3"
 
 services:
-  php:
-    container_name: 'php'
-    build:
-      dockerfile: ./docker/Dockerfile
-      context: ./
-      args:
-        - BUILDKIT_INLINE_CACHE=1
+  gearman-ui:
+    container_name: 'gearman-ui'
+    image: 'legacyphp/gearman-ui:latest'
     tty: true
     ports:
       - '8081:80'
@@ -21,7 +17,7 @@ services:
 
   gearman:
     container_name: 'gearman'
-    image: 'beeyev/gearman:latest'
+    image: 'legacyphp/gearman:latest'
     restart: unless-stopped
     environment:
       - 'TZ=UTC'

@@ -13,7 +13,7 @@ export NUM_CPUS=`nproc`
 for f in /docker-entrypoint.init.d/*; do
     case "$f" in
         *.sh) # this should match the set of files we check for below
-            echo "⚙️ Executing entrypoint.init file: ${f}"
+            echo "⚙	 Executing entrypoint.init file: ${f}"
             . $f
             break
             ;;
@@ -23,9 +23,9 @@ done
 if [ "$1" = 'supervisor' ]; then
     EXEC="/usr/bin/supervisord -c /etc/supervisord.conf"
 
-    printf "\n${GRN}---> 🚀️️ Starting Gearman UI container...${NC}"
-    printf "\nBuild date: ${BUILD_DATE}, Build version: ${BUILD_VER}\n"
-    printf "\n---> Exec command: ${EXEC}\n"
+    printf "\n${GRN}--->${NC} 🚀️️	 Starting ${GRN}Gearman UI${NC} container..."
+    printf "\n${GRN}--->${NC} Build date: ${GRN}${BUILD_DATE}${NC}, Build version: ${GRN}${BUILD_VER}${NC}"
+    printf "\n${GRN}--->${NC} Exec command: ${EXEC}\n\n"
 
     exec ${EXEC}
 fi
