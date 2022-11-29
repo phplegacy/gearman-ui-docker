@@ -25,6 +25,3 @@ logs: ## Show docker logs
 
 gearman-ui:
 	docker-compose exec gearman-ui sh
-
-gearman:
-	docker-compose exec gearman sh

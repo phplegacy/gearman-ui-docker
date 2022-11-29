@@ -10,8 +10,7 @@ services:
     restart: unless-stopped
     environment:
       - 'TZ=UTC'
-      - 'GEARMAN_SERVERS=Gearman#1:gearman:4730,Gearman#2:gearman2:4730'
-      - 'COMPOSE_CONVERT_WINDOWS_PATHS=1'
+      - 'GEARMAN_SERVERS=Gearman#1:gearman:4730'
     networks:
       - network1
 

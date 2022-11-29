@@ -3,6 +3,7 @@ FROM node:4-alpine as node
 
 WORKDIR /tmp/
 ENV NODE_ENV=production
+ENV NPM_CONFIG_UNSAFE_PERM=true
 
 
 # Core utilites install
@@ -21,7 +22,6 @@ RUN set -eux \
 
 
 FROM php:5.6-fpm-alpine as php
-LABEL org.opencontainers.image.source=https://github.com/phplegacy/gearman-ui-docker
 
 ENV TERM="xterm-256color" \
 LANGUAGE="en_US.UTF-8" \
@@ -81,13 +81,23 @@ ENV PATH ${PATH}:${HOME}/.composer/vendor/bin:/app/vendor/bin/
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+LABEL org.opencontainers.image.title="Gearman UI Docker image" \
+    org.opencontainers.image.description="phplegacy Gearman UI Docker image" \
+    org.opencontainers.image.authors="https://github.com/phplegacy/gearman-ui-docker" \
+    org.opencontainers.image.documentation="https://github.com/phplegacy/gearman-ui-docker" \
+    org.opencontainers.image.url="https://github.com/phplegacy/gearman-ui-docker" \
+    org.opencontainers.image.source="https://github.com/phplegacy/gearman-ui-docker"
+
 ARG TZ='UTC'
 ENV TZ=$TZ
+
 #These params meant to be set by CI
 ARG BUILD_DATE
 ENV BUILD_DATE=$BUILD_DATE
-ARG BUILD_VER
-ENV BUILD_VER=$BUILD_VER
+RUN echo $BUILD_DATE
+ARG BUILD_FINGERPRINT
+ENV BUILD_FINGERPRINT=$BUILD_FINGERPRINT
+RUN echo $BUILD_FINGERPRINT
 
 COPY --from=node /tmp/gearman-ui-master/ /app/
 COPY ./docker/config/gearmanui/config.yml /app/config.yml
