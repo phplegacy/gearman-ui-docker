@@ -20,7 +20,7 @@ RUN set -eux \
     && bower install --production --allow-root --silent
 
 
-FROM php:5.6-fpm-alpine as php
+FROM php:8.1-fpm-alpine as php
 LABEL org.opencontainers.image.source=https://github.com/phplegacy/gearman-ui-docker
 
 ENV TERM="xterm-256color" \
