@@ -21,7 +21,7 @@ RUN set -eux \
     && bower install --production --allow-root --silent
 
 
-FROM php:5.6-fpm-alpine as php
+FROM php:8.2-fpm-alpine as php
 
 ENV TERM="xterm-256color" \
 LANGUAGE="en_US.UTF-8" \
