@@ -19,12 +19,12 @@ Use provided [`docker-compose.yml`](https://github.com/phplegacy/gearman-ui-dock
 ## Configuration
 
 Use environment variables to define gearman server name, address and port:  
-```
+```sh
 GEARMAN_SERVERS = 'Gearman#1:gearman:4730';
 ```
 
 Separate configuration with comma in order to connect to multiple gearman servers:
-```
+```sh
 GEARMAN_SERVERS = 'Gearman#1:gearman:4730,Gearman#2:gearman2:4730';
 ```
 
